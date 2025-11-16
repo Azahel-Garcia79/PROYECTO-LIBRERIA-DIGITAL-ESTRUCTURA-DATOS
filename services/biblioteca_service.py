@@ -18,7 +18,7 @@ class BibliotecaService:
         from utils.colores import RED, YELLOW, GREEN
         
         if not all([isbn, titulo, autor, cantidad > 0]):
-            print(f"{RED}❌ Por favor, completa todos los datos correctamente{RESET}")
+            print(f"{RED} Por favor, completa todos los datos correctamente{RESET}")
             return False
 
         # Si el libro ya existe, aumentamos la cantidad
@@ -104,7 +104,7 @@ class BibliotecaService:
         try:
             libros.sort(key=lambda x: getattr(x, criterio))
         except AttributeError:
-            print(f"{RED}❌ No podemos ordenar por ese criterio{RESET}")
+            print(f"{RED} No podemos ordenar por ese criterio{RESET}")
             return []
         return libros
 
@@ -147,7 +147,7 @@ class BibliotecaService:
         
         libro = self.buscar_por_isbn_instantaneo(isbn)
         if not libro:
-            print(f"{RED}❌ No encontramos ese libro{RESET}")
+            print(f"{RED} No encontramos ese libro{RESET}")
             return False
             
         if libro.cantidad > 0:
@@ -157,7 +157,7 @@ class BibliotecaService:
             print(f"{GREEN}✅ Préstamo exitoso: '{libro.titulo}'. Quedan {libro.cantidad} disponibles{RESET}")
             return True
         else:
-            print(f"{RED}❌ Lo sentimos, no hay ejemplares disponibles{RESET}")
+            print(f"{RED} Lo sentimos, no hay ejemplares disponibles{RESET}")
             return False
 
     def devolver_libro(self, isbn):
@@ -166,17 +166,17 @@ class BibliotecaService:
         
         libro = self.buscar_por_isbn_instantaneo(isbn)
         if not libro:
-            print(f"{RED}❌ No encontramos ese libro{RESET}")
+            print(f"{RED} No encontramos ese libro{RESET}")
             return False
             
         if libro.prestados > 0:
             libro.cantidad += 1
             libro.prestados -= 1
             self.registro_prestamos.append(f"↩️ Devuelto: {libro.titulo} ({isbn})")
-            print(f"{GREEN}✅ ¡Gracias por devolver el libro!{RESET}")
+            print(f"{GREEN} ¡Gracias por devolver el libro!{RESET}")
             return True
         else:
-            print(f"{RED}❌ Este libro no estaba registrado como prestado{RESET}")
+            print(f"{RED} Este libro no estaba registrado como prestado{RESET}")
             return False
         
     def limpiar_historial_libro(self, isbn):
@@ -186,10 +186,10 @@ class BibliotecaService:
         cantidad_inicial = len(self.registro_prestamos)
         self.registro_prestamos = [reg for reg in self.registro_prestamos if not f"({isbn})" in reg]
         if len(self.registro_prestamos) < cantidad_inicial:
-            print(f"{GREEN}✅ Historial de préstamos limpiado{RESET}")
+            print(f"{GREEN} Historial de préstamos limpiado{RESET}")
             return True
         else:
-            print(f"{YELLOW}ℹ️ No había registros para ese libro{RESET}")
+            print(f"{YELLOW}ℹ No había registros para ese libro{RESET}")
             return False
             
     # --- FUNCIÓN RECURSIVA ---

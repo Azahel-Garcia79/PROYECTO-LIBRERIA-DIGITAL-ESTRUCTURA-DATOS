@@ -4,7 +4,7 @@ from utils.helpers import obtener_numero_valido, pausar_para_continuar
 def mostrar_menu_principal():
     """Muestra el menú principal"""
     print("\n" + "═" * 50)
-    print(f"{CYAN}         📚 BIBLIOTECA DIGITAL 📚{RESET}")
+    print(f"{CYAN}          BIBLIOTECA DIGITAL {RESET}")
     print("═" * 50)
     print(f"{MAGENTA}1. Gestionar Libros (Agregar, Editar, Eliminar){RESET}")
     print(f"{MAGENTA}2. Buscar y Consultar Catálogo{RESET}")
@@ -29,7 +29,7 @@ def menu_gestion_libros(biblioteca_service):
         opcion = input("Elige una opción [A-C, X]: ").upper()
         
         if opcion == 'A':
-            print(f"\n{CYAN}➕ AGREGAR NUEVO LIBRO{RESET}")
+            print(f"\n{CYAN} AGREGAR NUEVO LIBRO{RESET}")
             isbn = input("ISBN: ")
             titulo = input("Título: ")
             autor = input("Autor: ")
@@ -38,7 +38,7 @@ def menu_gestion_libros(biblioteca_service):
                 biblioteca_service.agregar_libro(isbn, titulo, autor, cantidad)
                 
         elif opcion == 'B':
-            print(f"\n{CYAN}✏️ ACTUALIZAR LIBRO{RESET}")
+            print(f"\n{CYAN} ACTUALIZAR LIBRO{RESET}")
             isbn = input("ISBN del libro a actualizar: ")
             titulo = input("Nuevo título (deja vacío para no cambiar): ")
             autor = input("Nuevo autor (deja vacío para no cambiar): ")
@@ -53,18 +53,18 @@ def menu_gestion_libros(biblioteca_service):
                 try:
                     nuevos_datos['cantidad'] = int(cantidad_str)
                 except ValueError:
-                    print(f"{RED}❌ La cantidad debe ser un número{RESET}")
+                    print(f"{RED} La cantidad debe ser un número{RESET}")
                     continue
             biblioteca_service.actualizar_libro(isbn, nuevos_datos)
 
         elif opcion == 'C':
-            print(f"\n{CYAN}🗑️ ELIMINAR LIBRO{RESET}")
+            print(f"\n{CYAN} ELIMINAR LIBRO{RESET}")
             biblioteca_service.eliminar_libro(input("ISBN del libro a eliminar: "))
             
         elif opcion == 'X':
             return
         else:
-            print(f"{RED}❌ Opción no reconocida{RESET}")
+            print(f"{RED} Opción no reconocida{RESET}")
         pausar_para_continuar()
 
 def menu_busquedas(biblioteca_service):
@@ -101,19 +101,19 @@ def menu_busquedas(biblioteca_service):
             palabra = input("¿Qué libro o autor buscas?: ")
             resultados = biblioteca_service.buscar_por_palabra(palabra)
             if resultados:
-                print(f"{GREEN}🎉 Encontramos {len(resultados)} resultados:{RESET}")
+                print(f"{GREEN} Encontramos {len(resultados)} resultados:{RESET}")
                 for libro in resultados:
                     print(f"• [{libro.isbn}] {libro.titulo} - {libro.autor} (Disponibles: {libro.cantidad})")
             else:
-                print(f"{YELLOW}🔍 No encontramos coincidencias{RESET}")
+                print(f"{YELLOW} No encontramos coincidencias{RESET}")
 
         elif opcion == 'C':
             isbn = input("Ingresa el ISBN a buscar: ")
             resultado = biblioteca_service.buscar_por_isbn_ordenado(isbn)
             if resultado:
-                print(f"{GREEN}✅ Encontrado: {resultado.titulo} ({resultado.cantidad} disponibles){RESET}")
+                print(f"{GREEN} Encontrado: {resultado.titulo} ({resultado.cantidad} disponibles){RESET}")
             else:
-                print(f"{YELLOW}🔍 ISBN no encontrado{RESET}")
+                print(f"{YELLOW} ISBN no encontrado{RESET}")
                 
         elif opcion == 'D':
             isbn = input("Ingresa el ISBN: ")
@@ -124,16 +124,16 @@ def menu_busquedas(biblioteca_service):
                 print(f"• Disponibles: {resultado.cantidad}")
                 print(f"• Prestados: {resultado.prestados}")
             else:
-                print(f"{YELLOW}🔍 ISBN no encontrado{RESET}")
+                print(f"{YELLOW} ISBN no encontrado{RESET}")
         
         elif opcion == 'E':
             total = biblioteca_service.contar_todos_los_ejemplares()
-            print(f"{GREEN}📊 Tenemos {total} ejemplares disponibles en total{RESET}")
+            print(f"{GREEN} Tenemos {total} ejemplares disponibles en total{RESET}")
                 
         elif opcion == 'X':
             return
         else:
-            print(f"{RED}❌ Opción no válida{RESET}")
+            print(f"{RED} Opción no válida{RESET}")
         pausar_para_continuar()
 
 def menu_prestamos(biblioteca_service):
@@ -158,16 +158,16 @@ def menu_prestamos(biblioteca_service):
             biblioteca_service.devolver_libro(input("ISBN del libro a devolver: "))
         elif opcion == 'C':
             if biblioteca_service.registro_prestamos:
-                print(f"\n{CYAN}📋 HISTORIAL RECIENTE (últimos 10 movimientos){RESET}")
+                print(f"\n{CYAN} HISTORIAL RECIENTE (últimos 10 movimientos){RESET}")
                 for i, registro in enumerate(biblioteca_service.registro_prestamos[-10:]):
                     print(f"{i+1}. {registro}")
             else:
-                print(f"{YELLOW}📝 Aún no hay movimientos registrados{RESET}")
+                print(f"{YELLOW} Aún no hay movimientos registrados{RESET}")
 
         elif opcion == 'D':
             biblioteca_service.limpiar_historial_libro(input("ISBN del libro a limpiar: "))
         elif opcion == 'X':
             return
         else:
-            print(f"{RED}❌ Opción no válida{RESET}")
+            print(f"{RED} Opción no válida{RESET}")
         pausar_para_continuar()

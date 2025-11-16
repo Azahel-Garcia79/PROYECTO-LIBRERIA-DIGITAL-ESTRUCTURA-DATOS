@@ -29,4 +29,4 @@ class InterfazBiblioteca:
                     print(f"\n{GREEN}¡Gracias por usar la Biblioteca Digital! ¡Hasta pronto! 👋{RESET}")
                     return
             else:
-                print(f"{RED}❌ Por favor, elige una opción del 1 al 4{RESET}")
+                print(f"{RED} Por favor, elige una opción del 1 al 4{RESET}")

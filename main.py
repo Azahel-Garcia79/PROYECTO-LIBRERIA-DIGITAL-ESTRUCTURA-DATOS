@@ -22,9 +22,9 @@ def main():
         app = InterfazBiblioteca()
         app.ejecutar()
     except KeyboardInterrupt:
-        print(f"\n\n¡Hasta pronto! 👋")
+        print(f"\n\n¡Hasta pronto! ")
     except Exception as e:
-        print(f"❌ Error inesperado: {e}")
+        print(f" Error inesperado: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
