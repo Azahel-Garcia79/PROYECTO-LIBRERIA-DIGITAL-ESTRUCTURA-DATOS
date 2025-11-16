@@ -59,10 +59,10 @@ class BibliotecaService:
                 libro.autor = nuevos_datos['autor']
             if 'cantidad' in nuevos_datos:
                 libro.cantidad = nuevos_datos['cantidad']
-            print(f"{GREEN}📝 Libro con ISBN {isbn} actualizado{RESET}")
+            print(f"{GREEN} Libro con ISBN {isbn} actualizado{RESET}")
             return True
         else:
-            print(f"{RED}❌ No encontramos ningún libro con ese ISBN{RESET}")
+            print(f"{RED} No encontramos ningún libro con ese ISBN{RESET}")
             return False
 
     def eliminar_libro(self, isbn):
@@ -71,7 +71,7 @@ class BibliotecaService:
         
         libro = self.indice_rapido.get(isbn)
         if not libro:
-            print(f"{RED}❌ No encontramos ningún libro con ese ISBN{RESET}")
+            print(f"{RED} No encontramos ningún libro con ese ISBN{RESET}")
             return False
             
         # Reorganizar los enlaces de la lista
@@ -86,7 +86,7 @@ class BibliotecaService:
         # Eliminar del índice rápido
         del self.indice_rapido[isbn]
         self.total_libros -= 1
-        print(f"{GREEN}🗑️ El libro '{libro.titulo}' fue eliminado{RESET}")
+        print(f"{GREEN} El libro '{libro.titulo}' fue eliminado{RESET}")
         return True
 
     # --- MÉTODOS DE BÚSQUEDA ---
@@ -154,7 +154,7 @@ class BibliotecaService:
             libro.cantidad -= 1
             libro.prestados += 1
             self.registro_prestamos.append(f"📖 Prestado: {libro.titulo} ({isbn})")
-            print(f"{GREEN}✅ Préstamo exitoso: '{libro.titulo}'. Quedan {libro.cantidad} disponibles{RESET}")
+            print(f"{GREEN} Préstamo exitoso: '{libro.titulo}'. Quedan {libro.cantidad} disponibles{RESET}")
             return True
         else:
             print(f"{RED} Lo sentimos, no hay ejemplares disponibles{RESET}")
@@ -172,7 +172,7 @@ class BibliotecaService:
         if libro.prestados > 0:
             libro.cantidad += 1
             libro.prestados -= 1
-            self.registro_prestamos.append(f"↩️ Devuelto: {libro.titulo} ({isbn})")
+            self.registro_prestamos.append(f" Devuelto: {libro.titulo} ({isbn})")
             print(f"{GREEN} ¡Gracias por devolver el libro!{RESET}")
             return True
         else:

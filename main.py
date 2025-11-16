@@ -1,6 +1,15 @@
+#HECHO POR ALAN CRUZ SALAZAR Y AZAHEL DE JESUS GARCIA LARA
+
+
+
+
+
 
 import sys
 import os
+
+ 
+
 
 # Agregar las carpetas al path para las importaciones
 sys.path.append(os.path.join(os.path.dirname(__file__), 'modelos'))
@@ -18,7 +27,8 @@ def main():
     except KeyboardInterrupt:
         print(f"\n\n¡Hasta pronto! ")
     except Exception as e:
-        print(f" Error inesperado: {e}")
+        print(f" Error inesperado: {e}")       
+          
         sys.exit(1)
 
 if __name__ == "__main__":
