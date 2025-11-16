@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-BIBLIOTECA DIGITAL - Sistema de Gestión de Libros
-Autor: Tu Nombre
-Descripción: Sistema completo de gestión bibliotecaria con múltiples métodos de búsqueda
-"""
 
 import sys
 import os
