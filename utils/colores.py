@@ -1,0 +1,8 @@
+# Códigos ANSI para colores
+CYAN = '\033[36m'
+MAGENTA = '\033[35m'
+GREEN = '\033[32m'
+RED = '\033[31m'
+YELLOW = '\033[33m'
+RESET = '\033[0m'
+BLUE = '\033[34m'
